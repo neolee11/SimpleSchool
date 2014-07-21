@@ -18,8 +18,11 @@
     <ul>
         @foreach (var course in Model)
         {
-            <li>@course.Title - @course.Credits - @course.Instructor.FullName</li>
+            <li>
+                @course.Title - @course.Credits - @course.Instructor.FullName
+                - @course.Enrollments[0].Student.FullName
+            </li>
         }
-        
+
     </ul>
 </div>

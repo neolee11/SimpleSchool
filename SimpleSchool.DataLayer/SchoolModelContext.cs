@@ -21,6 +21,7 @@ namespace SimpleSchool.DataLayer
         {
             Database.SetInitializer(new CustomDropCreateDatabaseIfModelChanges());
             //Database.SetInitializer(new DropCreateDatabaseAlways<SchoolModelContext>()); 
+            //this.Configuration.LazyLoadingEnabled = false;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

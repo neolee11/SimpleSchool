@@ -11,7 +11,8 @@ namespace SimpleSchool.DataLayer.Repositories
         {
             using (var ctx = new SchoolModelContext())
             {
-                return ctx.Courses.Include(c => c.Instructor).
+                return ctx.Courses.Include(c => c.Instructor)
+                    .Include(c => c.Enrollments.Select(e => e.Student)).
                     ToList();
             }
         }
