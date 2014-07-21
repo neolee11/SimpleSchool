@@ -1,0 +1,25 @@
+﻿@using SimpleSchool.Core
+
+@model List<Course>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+    <h1>Simple School Website</h1>
+</div>
+
+<div>
+    <h2>
+        Coures
+    </h2>
+    
+    <ul>
+        @foreach (var course in Model)
+        {
+            <li>@course.Title - @course.Credits - @course.Instructor.FullName</li>
+        }
+        
+    </ul>
+</div>
