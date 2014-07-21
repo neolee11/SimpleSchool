@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201407211937415_InitialCreate.cs" />
+    <Compile Include="Migrations\201407211937415_InitialCreate.Designer.cs">
+      <DependentUpon>201407211937415_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="CustomDropCreateDatabaseIfModelChanges.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,6 +67,11 @@
       <Project>{b1ad48bf-05cb-4c53-bde5-5ffd6a57e44e}</Project>
       <Name>SimpleSchool.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201407211937415_InitialCreate.resx">
+      <DependentUpon>201407211937415_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

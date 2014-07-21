@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SimpleSchool.Core;
 using SimpleSchool.Core.Domain;
+using SimpleSchool.DataLayer.Migrations;
 
 namespace SimpleSchool.DataLayer
 {
@@ -20,9 +21,9 @@ namespace SimpleSchool.DataLayer
         public SchoolModelContext()
             : base("SimpleSchoolConnStr")
         {
-            Database.SetInitializer(new CustomDropCreateDatabaseIfModelChanges());
+            //Database.SetInitializer(new CustomDropCreateDatabaseIfModelChanges());
             //Database.SetInitializer(new DropCreateDatabaseAlways<SchoolModelContext>()); 
-            //this.Configuration.LazyLoadingEnabled = false;
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<SchoolModelContext, Configuration>()); //Better to do in the app/web.config files 
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
