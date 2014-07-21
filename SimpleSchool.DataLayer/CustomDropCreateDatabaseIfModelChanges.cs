@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using SimpleSchool.Core;
+using SimpleSchool.Core.Domain;
 
 namespace SimpleSchool.DataLayer
 {

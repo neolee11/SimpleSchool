@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using SimpleSchool.Core.Domain;
 using SimpleSchool.Core.RepositoryInterfaces;
 
 namespace SimpleSchool.DataLayer.Repositories
 {
     public class CourseRepository : ICourseRepository
     {
-        public List<Core.Course> GetAll()
+        public List<Course> GetAll()
         {
             using (var ctx = new SchoolModelContext())
             {
@@ -17,17 +18,17 @@ namespace SimpleSchool.DataLayer.Repositories
             }
         }
 
-        public Core.Course GetById(int id)
+        public Course GetById(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Insert(Core.Course t)
+        public void Insert(Course t)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Update(Core.Course t)
+        public void Update(Course t)
         {
             throw new System.NotImplementedException();
         }
