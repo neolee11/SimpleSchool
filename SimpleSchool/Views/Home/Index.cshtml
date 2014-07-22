@@ -20,7 +20,7 @@
         {
             <li>
                 @course.Title - @course.Credits - @course.Instructor.FullName
-                - @course.Enrollments[0].Student.FullName
+                - @course.Enrollments[0].Student.FullName - @course.Enrollments[0].Student.Birthday.ToString()
             </li>
         }
 
