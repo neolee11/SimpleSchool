@@ -18,7 +18,7 @@ namespace SimpleSchool.Controllers
             //UpdateExistingCourse();
             //CreateJustCourse();
             //DeleteCourse();
-            GetInstructor();
+            //GetInstructor();
 
             var repository = new CourseRepository();
             //var courses = repository.GetGraphAll();
@@ -26,6 +26,7 @@ namespace SimpleSchool.Controllers
 
             return View(courses);
         }
+
 
         private void GetInstructor()
         {
@@ -123,7 +124,30 @@ namespace SimpleSchool.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            var repository = new InstructorRepository();
+            var instructors = repository.GetAll();
+
+            var existingStudent = new StudentRepository().GetById(1);
+
+            var instructor = instructors[0];
+            //instructor.FirstName = "Barara";
+            //instructor.TeachingCourses[0].Enrollments.Add(
+            //    new Enrollment()
+            //        {
+            //            Student = existingStudent,
+            //            Grade = 100
+            //            //Course = instructor.TeachingCourses[0]
+            //        }
+            //    );
+
+
+            instructor.TeachingCourses.RemoveAt(2);
+
+
+
+            repository.InsertOrUpdate(instructor);
+
+            return View(instructors);
         }
 
         public ActionResult Contact()

@@ -57,7 +57,9 @@
     <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="CustomDropCreateDatabaseIfModelChanges.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\InstructorRepository.cs" />
+    <Compile Include="Repositories\InstructorRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Repositories\StudentRepository.cs" />
     <Compile Include="SchoolModelContext.cs" />
   </ItemGroup>

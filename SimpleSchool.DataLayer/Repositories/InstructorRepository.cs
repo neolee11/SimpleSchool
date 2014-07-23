@@ -69,6 +69,8 @@ namespace SimpleSchool.DataLayer.Repositories
                                     with2 => with2.OwnedEntity(e => e.Student).OwnedEntity(e => e.Course)))
 
                     );
+
+                ctx.SaveChanges();
             }
         }
 
