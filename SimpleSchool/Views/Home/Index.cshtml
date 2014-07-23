@@ -20,9 +20,21 @@
         {
             <li>
                 @course.Title - @course.Credits - @course.Instructor.FullName
-                - @course.Enrollments[0].Student.FullName - @course.Enrollments[0].Student.Birthday.ToString()
+                @if (course.Enrollments != null && course.Enrollments.Count > 0)
+                {
+                    foreach (var enrollment in course.Enrollments)
+                    {
+                        <span>
+                            Student:
+                            @enrollment.Student.FullName
+                            - @course.Enrollments[0].Student.Birthday.ToString()
+                        </span>
+                    }
+                }
+
             </li>
         }
 
     </ul>
+
 </div>

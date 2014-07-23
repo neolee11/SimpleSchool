@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using RefactorThis.GraphDiff;
 using SimpleSchool.Core.Domain;
 using SimpleSchool.Core.RepositoryInterfaces;
@@ -11,31 +13,6 @@ namespace SimpleSchool.DataLayer.Repositories
     {
         public List<Course> GetAll()
         {
-             using (var ctx = new SchoolModelContext())
-             {
-                 return ctx.Courses.ToList();
-             }
-        }
-
-        public Course GetById(int id)
-        {
-            using (var ctx = new SchoolModelContext())
-            {
-                return ctx.Courses.SingleOrDefault(c => c.Id == id);
-            }
-        }
-
-        public void InsertOrUpdate(Course t)
-        {
-            using (var ctx = new SchoolModelContext())
-            {
-                ctx.Entry(t).State = t.Id == 0 ? EntityState.Added : EntityState.Modified;
-                ctx.SaveChanges();
-            }
-        }
-
-        public List<Course> GetGraphAll()
-        {
             using (var ctx = new SchoolModelContext())
             {
                 return ctx.Courses
@@ -45,7 +22,7 @@ namespace SimpleSchool.DataLayer.Repositories
             }
         }
 
-        public List<Course> GetAllIncluding(params System.Linq.Expressions.Expression<System.Func<Course, object>>[] includeProperties)
+        public List<Course> GetAllIncluding(params Expression<Func<Course, object>>[] includeProperties)
         {
             using (var ctx = new SchoolModelContext())
             {
@@ -58,7 +35,18 @@ namespace SimpleSchool.DataLayer.Repositories
             }
         }
 
-        public Course GetGraphById(int id)
+        public List<Course> GetByWhere(Expression<Func<Course, bool>> filter)
+        {
+            using (var ctx = new SchoolModelContext())
+            {
+                return ctx.Courses.Where(filter)
+                    .Include(c => c.Instructor)
+                    .Include(c => c.Enrollments.Select(e => e.Student))
+                    .ToList();
+            }
+        }
+
+        public Course GetById(int id)
         {
             using (var ctx = new SchoolModelContext())
             {
@@ -69,16 +57,7 @@ namespace SimpleSchool.DataLayer.Repositories
             }
         }
 
-        public void InsertGraph(Course t)
-        {
-            //Insert : use foreign key property for related objects to avoid insert an existing object
-            using (var ctx = new SchoolModelContext())
-            {
-                ctx.Courses.Add(t); //everything in the graph will be marked added except the one using foreigh key
-            }
-        }
-
-        public void UpdateGraph(Course t)
+        public void InsertOrUpdate(Course t)
         {
             using (var ctx = new SchoolModelContext())
             {
@@ -102,10 +81,53 @@ namespace SimpleSchool.DataLayer.Repositories
             }
         }
 
+        #region Not used
+        //public void InsertGraph(Course t)
+        //{
+        //    //Insert : use foreign key property for related objects to avoid insert an existing object
+        //    using (var ctx = new SchoolModelContext())
+        //    {
+        //        ctx.Courses.Add(t); //everything in the graph will be marked added except the one using foreigh key
+        //    }
+        //}
+
+        //public List<Course> GetAll()
+        //{
+        //     using (var ctx = new SchoolModelContext())
+        //     {
+        //         return ctx.Courses.ToList();
+        //     }
+        //}
+
+        //public Course GetById(int id)
+        //{
+        //    using (var ctx = new SchoolModelContext())
+        //    {
+        //        return ctx.Courses.SingleOrDefault(c => c.Id == id);
+        //    }
+        //}
 
 
 
+        //public void InsertOrUpdate(Course t)
+        //{
+        //    using (var ctx = new SchoolModelContext())
+        //    {
+        //        if (t.Id == default(int))
+        //        {
+        //            ctx.Entry(t).State = EntityState.Added;
+        //        }
+        //        else
+        //        {
+        //            ctx.Courses.Add(t); //figure out relationship, foreign key etc
+        //            ctx.Entry(t).State = EntityState.Modified;
+        //        }
 
-       
+        //        //ctx.Entry(t).State = t.Id == 0 ? EntityState.Added : EntityState.Modified;
+        //        ctx.SaveChanges();
+        //    }
+        //}
+        #endregion
+
     }
 }

@@ -11,5 +11,6 @@ namespace SimpleSchool.Core.Domain
         public virtual Course Course { get; set; }
 
         public decimal Grade { get; set; }
+
     }
 }

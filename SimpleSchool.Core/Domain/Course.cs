@@ -12,5 +12,6 @@ namespace SimpleSchool.Core.Domain
         public virtual Instructor Instructor { get; set; }
 
         public virtual List<Enrollment> Enrollments { get; set; }
+
     }
 }

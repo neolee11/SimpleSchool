@@ -68,4 +68,36 @@ namespace SimpleSchool.DataLayer
     //        this.HasKey(c => c.Id);
     //    }
     //}
+
+    public static class ContextHelper
+    {
+        public static void ApplyStateChanges(this DbContext context)
+        {
+            foreach (var entry in context.ChangeTracker.Entries<IObjectWithEntityState>())
+            {
+                IObjectWithEntityState stateInfo = entry.Entity;
+                entry.State = ObjectEntityStateHelper.ConvertState(stateInfo.EntityState);
+
+                
+            }
+        }
+    }
+
+    public class ObjectEntityStateHelper
+    {
+        public static EntityState ConvertState(ObjectEntityState state)
+        {
+            switch (state)
+            {
+                case ObjectEntityState.Added:
+                    return EntityState.Added;
+                case ObjectEntityState.Modified:
+                    return EntityState.Modified;
+                case ObjectEntityState.Deleted:
+                    return EntityState.Deleted;
+                default:
+                    return EntityState.Unchanged;
+            }
+        }
+    }
 }
