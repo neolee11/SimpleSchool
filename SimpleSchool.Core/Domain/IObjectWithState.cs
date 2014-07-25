@@ -3,6 +3,7 @@
     public interface IObjectWithEntityState
     {
         ObjectEntityState EntityState { get; set; }
+
     }
 
 
