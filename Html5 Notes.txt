@@ -1,0 +1,4 @@
+Html 5
+
+1. Offline application (load from browser cache in disconnected mode)
+2. Geolocation

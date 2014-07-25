@@ -21,8 +21,8 @@ namespace SimpleSchool.Controllers
             //GetInstructor();
 
             var repository = new CourseRepository();
-            //var courses = repository.GetGraphAll();
-            var courses = repository.GetByWhere(c => c.Credits > 4);
+            var courses = repository.GetAll();
+            //var courses = repository.GetByWhere(c => c.Credits > 4);
 
             return View(courses);
         }

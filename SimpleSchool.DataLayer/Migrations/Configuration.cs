@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using SimpleSchool.Core.Domain;
 
 namespace SimpleSchool.DataLayer.Migrations
@@ -31,6 +32,38 @@ namespace SimpleSchool.DataLayer.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            //context.Students.AddOrUpdate(
+            //    s => s.LastName,
+            //    new Student
+            //    {
+            //        FirstName = "Daniel",
+            //        LastName = "Smith",
+            //        YearLevel = 8,
+            //        Birthday = 
+
+            //        Enrollments = new List<Enrollment>()
+            //                {
+            //                    new Enrollment()
+            //                    {
+            //                        Course = new Course()
+            //                        {
+            //                            Title = "History",
+            //                            Credits = 4,
+            //                            Instructor = new Instructor()
+            //                            {
+            //                                FirstName = "Michael",
+            //                                LastName = "Jordon",
+            //                                EmploymentStartDate = new DateTime(2010, 3, 1)
+            //                            }
+            //                        },
+            //                        Grade = 90
+            //                    }
+            //                }
+            //    }
+
+            //    );
         }
+     
     }
 }
