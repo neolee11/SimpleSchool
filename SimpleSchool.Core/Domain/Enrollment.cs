@@ -12,5 +12,6 @@ namespace SimpleSchool.Core.Domain
 
         public decimal Grade { get; set; }
 
+
     }
 }
